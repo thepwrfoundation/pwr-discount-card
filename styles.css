@@ -1125,3 +1125,11 @@ code {
     max-width: 260px;
   }
 }
+/* Center the hero logo above the headline */
+.hero-copy > img,
+.hero-copy > .hero-logo,
+.hero-copy > .logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
