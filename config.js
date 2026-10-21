@@ -4,7 +4,7 @@ window.PWR_CONFIG = {
   fundraiserFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdOQWLcz49u8kzDMpik9utsj864lKsCp0tI_xTnG3Ns3ZSV5g/viewform?usp=header", // Paste public Google Form link for fundraising applications
   // Example listings below are FICTIONAL demonstrations; replace with approved businesses.
   deals: [
-    {name:"Sample Coffee House",category:"Food & Drinks",town:"Victoria, TX",offer:"15% OFF",detail:"One regular-priced beverage",terms:"Present valid PWR card. Cannot combine with other offers.",featured:true},
+    {name:"PWR Foundation Rummage Sale",category:"Shopping & Retail",town:"Victoria, TX",offer:"One FREE Item",detail:"DaCosta Lodge Hall - February 27, 2027",terms:"Present valid PWR card. Cannot combine with other offers.",featured:true},
     {name:"Sample Boutique",category:"Shopping & Retail",town:"Hallettsville, TX",offer:"10% OFF",detail:"Your in-store purchase",terms:"Excludes clearance items.",featured:false},
     {name:"Sample Auto Care",category:"Services",town:"La Grange, TX",offer:"$10 OFF",detail:"A qualifying service",terms:"Minimum purchase may apply.",featured:true},
     {name:"Sample Family Fun",category:"Entertainment",town:"Victoria, TX",offer:"BUY 1 GET 1",detail:"Select admission tickets",terms:"Equal or lesser value. Restrictions apply.",featured:false},
