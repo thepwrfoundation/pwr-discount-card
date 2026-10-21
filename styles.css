@@ -1107,20 +1107,21 @@ code {
     padding-right: 16px;
   }
 }
-/* Hero logo sizing */
-.hero-logo,
-.hero .logo {
+
+/* PWR HERO LOGO — CENTER ABOVE HEADLINE */
+.hero-text .hero-logo {
   display: block;
   width: 100%;
   max-width: 330px;
   height: auto;
   object-fit: contain;
+  margin: 0 auto 16px;
 }
 
 @media (max-width: 600px) {
-  .hero-logo,
-  .hero .logo {
+  .hero-text .hero-logo {
     max-width: 260px;
+    margin-bottom: 16px;
   }
 }
 
