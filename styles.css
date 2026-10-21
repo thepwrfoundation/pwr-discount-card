@@ -1107,29 +1107,20 @@ code {
     padding-right: 16px;
   }
 }
-
-
-/* Center hero logo */
-.hero-logo, .hero .logo {
+/* Hero logo sizing */
+.hero-logo,
+.hero .logo {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 330px;
   width: 100%;
+  max-width: 330px;
   height: auto;
   object-fit: contain;
 }
 
 @media (max-width: 600px) {
-  .hero-logo, .hero .logo {
+  .hero-logo,
+  .hero .logo {
     max-width: 260px;
   }
 }
-/* Center the hero logo above the headline */
-.hero-copy > img,
-.hero-copy > .hero-logo,
-.hero-copy > .logo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+
