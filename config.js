@@ -1,7 +1,7 @@
 /* EDIT THESE SETTINGS BEFORE PUBLISHING. Keep the same site address to preserve printed QR codes. */
 window.PWR_CONFIG = {
   businessFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe2KASRDSicnOljgWrlhtqs2XV1-iSwOnGJAXdLj3FT5VnH_g/viewform?usp=header", // Paste public Google Form link for free business enrollment
-  fundraiserFormUrl: "", // Paste public Google Form link for fundraising applications
+  fundraiserFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdOQWLcz49u8kzDMpik9utsj864lKsCp0tI_xTnG3Ns3ZSV5g/viewform?usp=header", // Paste public Google Form link for fundraising applications
   // Example listings below are FICTIONAL demonstrations; replace with approved businesses.
   deals: [
     {name:"Sample Coffee House",category:"Food & Drinks",town:"Victoria, TX",offer:"15% OFF",detail:"One regular-priced beverage",terms:"Present valid PWR card. Cannot combine with other offers.",featured:true},
