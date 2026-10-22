@@ -83,13 +83,16 @@ function drawDeals() {
   );
 
   grid.innerHTML = items.map(d => {
-    const logo = /^https:\/\//i.test(d.logo || "")
-      ? `<img src="${escapeHtml(d.logo)}"
-          alt="${escapeHtml(d.name)} logo"
-          loading="lazy"
-          style="style="display:block;width:180px;max-width:100%;height:110px;object-fit:contain;object-position:left center;""
-          onerror="this.style.display='none'">`
-      : "";
+    
+const logo = /^https:\/\//i.test(d.logo || "")
+  ? `<img
+      class="business-logo"
+      src="${escapeHtml(d.logo)}"
+      alt="${escapeHtml(d.name)} logo"
+      loading="lazy"
+      onerror="this.style.display='none'">`
+  : "";
+
 
     return `
       <article class="deal-card">
