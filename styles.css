@@ -1125,3 +1125,21 @@ code {
   }
 }
 
+/* BUSINESS COUPON LOGOS ONLY */
+.deal-content .business-logo {
+  display: block;
+  width: 200px;
+  max-width: 100%;
+  height: 125px;
+  object-fit: contain;
+  object-position: left center;
+  margin: 0 0 14px;
+}
+
+@media (max-width: 620px) {
+  .deal-content .business-logo {
+    width: 180px;
+    height: 110px;
+  }
+}
+
