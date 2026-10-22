@@ -87,7 +87,7 @@ function drawDeals() {
       ? `<img src="${escapeHtml(d.logo)}"
           alt="${escapeHtml(d.name)} logo"
           loading="lazy"
-          style="width:180px;max-width:100%;height:110px;object-fit:contain;object-position:left center;"
+          style="style="display:block;width:180px;max-width:100%;height:110px;object-fit:contain;object-position:left center;""
           onerror="this.style.display='none'">`
       : "";
 
