@@ -1108,20 +1108,25 @@ code {
   }
 }
 
-/* PWR HERO LOGO — CENTER ABOVE HEADLINE */
+
+/* PWR HERO LOGO — ALIGN WITH HEADLINE */
 .hero-text .hero-logo {
   display: block;
   width: 100%;
   max-width: 330px;
   height: auto;
   object-fit: contain;
-  margin: 0 auto 16px;
+  object-position: left center;
+  margin: 0 0 16px 0;
 }
 
 @media (max-width: 600px) {
   .hero-text .hero-logo {
     max-width: 260px;
     margin-bottom: 16px;
+  }
+}
+
   }
 }
 
