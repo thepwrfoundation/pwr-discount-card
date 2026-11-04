@@ -116,3 +116,28 @@ font-size: clamp(25px, 8vw, 34px);
     float: none;
   }
 }
+/* Business contact details — append to the bottom of styles.css */
+.deal-contact {
+  border-top: 1px solid #e7e6ff;
+  margin-top: 20px;
+  padding-top: 16px;
+}
+.deal-contact h4 {
+  font-size: 13px;
+  color: var(--deep);
+  margin: 0 0 12px;
+  font-weight: 800;
+}
+.deal-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.deal-contact-icon { width: 20px; flex-shrink: 0; }
+.deal-contact-row strong { display: block; font-size: 11px; color: #53627a; }
+.deal-contact-row a { color: #6145b7; text-decoration: underline; text-underline-offset: 2px; }
+.deal-contact-row a:hover { color: var(--pink); }
