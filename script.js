@@ -40,6 +40,25 @@ const escapeHtml = s =>
     "'": "&#39;"
   }[c]));
 
+function safeUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+
+  try {
+    const candidate = /^https?:\/\//i.test(raw)
+      ? raw
+      : "https://" + raw;
+
+    const url = new URL(candidate);
+
+    return ["https:", "http:"].includes(url.protocol)
+      ? url.href
+      : "";
+  } catch {
+    return "";
+  }
+}
+
 function getDeals() {
   return liveDeals === null
     ? (cfg.deals || [])
@@ -68,6 +87,116 @@ function drawFilters() {
   });
 }
 
+function contactDetails(d) {
+  const rows = [];
+
+  const businessType = d.businessType || "";
+  const shoppingLocation = d.shoppingLocation || "";
+  const publicAddress = d.publicAddress || d.address || "";
+  const phone = String(d.phone || "").trim();
+  const email = String(d.email || "").trim();
+  const website = safeUrl(d.website);
+  const socialMedia = safeUrl(d.socialMedia);
+
+  if (businessType) {
+    rows.push(`
+      <div class="contact-row">
+        <span>🏪</span>
+        <span>${escapeHtml(businessType)}</span>
+      </div>
+    `);
+  }
+
+  if (shoppingLocation) {
+    rows.push(`
+      <div class="contact-row">
+        <span>📍</span>
+        <span>${escapeHtml(shoppingLocation)}</span>
+      </div>
+    `);
+  }
+
+  if (publicAddress) {
+    const mapUrl =
+      "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent(publicAddress);
+
+    rows.push(`
+      <div class="contact-row">
+        <span>🗺️</span>
+        <a href="${escapeHtml(mapUrl)}"
+           target="_blank"
+           rel="noopener noreferrer">
+          ${escapeHtml(publicAddress)}
+        </a>
+      </div>
+    `);
+  }
+
+  if (phone) {
+    const dial = phone.replace(/[^\d+]/g, "");
+
+    if (dial) {
+      rows.push(`
+        <div class="contact-row">
+          <span>📞</span>
+          <a href="tel:${escapeHtml(dial)}">
+            ${escapeHtml(phone)}
+          </a>
+        </div>
+      `);
+    }
+  }
+
+  if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    rows.push(`
+      <div class="contact-row">
+        <span>✉️</span>
+        <a href="mailto:${escapeHtml(email)}">
+          ${escapeHtml(email)}
+        </a>
+      </div>
+    `);
+  }
+
+  if (website) {
+    rows.push(`
+      <div class="contact-row">
+        <span>🌐</span>
+        <a href="${escapeHtml(website)}"
+           target="_blank"
+           rel="noopener noreferrer">
+          Visit Website ↗
+        </a>
+      </div>
+    `);
+  }
+
+  if (socialMedia) {
+    rows.push(`
+      <div class="contact-row">
+        <span>💬</span>
+        <a href="${escapeHtml(socialMedia)}"
+           target="_blank"
+           rel="noopener noreferrer">
+          Social Media ↗
+        </a>
+      </div>
+    `);
+  }
+
+  if (!rows.length) return "";
+
+  return `
+    <div class="business-contact">
+      <div class="contact-heading">
+        FIND OR CONTACT THIS BUSINESS
+      </div>
+      ${rows.join("")}
+    </div>
+  `;
+}
+
 function drawDeals() {
   const q = search.value.trim().toLowerCase();
 
@@ -78,21 +207,28 @@ function drawDeals() {
       d.category,
       d.town,
       d.offer,
-      d.detail
+      d.detail,
+      d.businessType,
+      d.shoppingLocation,
+      d.publicAddress,
+      d.address,
+      d.phone,
+      d.email,
+      d.website,
+      d.socialMedia
     ].join(" ").toLowerCase().includes(q)
   );
 
   grid.innerHTML = items.map(d => {
-    
-const logo = /^https:\/\//i.test(d.logo || "")
-  ? `<img
-      class="business-logo"
-      src="${escapeHtml(d.logo)}"
-      alt="${escapeHtml(d.name)} logo"
-      loading="lazy"
-      onerror="this.style.display='none'">`
-  : "";
 
+    const logo = /^https:\/\//i.test(d.logo || "")
+      ? `<img
+          class="business-logo"
+          src="${escapeHtml(d.logo)}"
+          alt="${escapeHtml(d.name)} logo"
+          loading="lazy"
+          onerror="this.style.display='none'">`
+      : "";
 
     return `
       <article class="deal-card">
@@ -110,16 +246,22 @@ const logo = /^https:\/\//i.test(d.logo || "")
 
         <div class="deal-content">
           ${logo}
+
           <p class="deal-town">
             ⌁ ${escapeHtml(d.town)}
           </p>
+
           <h3>${escapeHtml(d.name)}</h3>
+
           <div class="deal-offer">
             ${escapeHtml(d.offer)}
           </div>
+
           <p class="deal-detail">
             ${escapeHtml(d.detail)}
           </p>
+
+          ${contactDetails(d)}
         </div>
 
         <div class="deal-bottom">
@@ -137,8 +279,7 @@ const logo = /^https:\/\//i.test(d.logo || "")
 }
 
 /*
- Receives the approved businesses
- from Google Apps Script.
+ Receives approved businesses from Google Apps Script.
 */
 
 window.PWR_receiveBusinesses = function(data) {
